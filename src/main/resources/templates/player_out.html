@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/cards_output.css" type="text/css"/>
+    <title>Player cards out</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1><p th:text="${playerName}"/></h1>
+        <tr th:each="card: ${cards}">
+            <div class="card_frame">
+                <p>
+                    <td th:text="${card.getId()}"/>
+                    <td th:text="${card.getFigureName()}"/>
+                    <td th:text="${card.getColorName()}"/>
+                </p>
+<!--                <div class="result"></div>-->
+                <img class="card_image" th:src="${card.getVisibleImagePath()}"/>
+            </div>
+        </tr>
+    </div>
+
+</body>
+</html>
