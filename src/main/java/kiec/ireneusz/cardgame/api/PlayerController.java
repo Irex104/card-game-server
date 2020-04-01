@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
-@Controller
+@RestController
 @RequestMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(tags = "Player")
 public class PlayerController {
@@ -29,7 +28,6 @@ public class PlayerController {
         this.gameFacade = gameFacade;
     }
 
-    //region SWAGGER
     @PostMapping("/createPlayer")
     public ResponseEntity<PlayerDTO> createPlayer(
             @RequestBody PlayerApi api
@@ -48,25 +46,13 @@ public class PlayerController {
     public ResponseEntity<List<PlayerDTO>> getAll(){
         return ResponseEntity.ok(gameFacade.getPlayers());
     }
-    //endregion
 
-    //region BROWSER
     @GetMapping("/getPlayerCards/{playerId}")
-    public ResponseEntity<List<CardDTO>>/*String*/ getPlayerCards(
-            @PathVariable Long playerId,
-            Model model
+    public ResponseEntity<List<CardDTO>> getPlayerCards(
+            @PathVariable Long playerId
     ) throws PlayerNotFoundException {
-        //PlayerDTO playerDTO = gameFacade.getPlayer(playerId);
 
-        //        List<CardDTO> playerWaist = playerDTO.getPlayerWaist();
-
-        //
-
-        //        model.addAttribute("playerName", playerDTO.getName());
-
-        //        model.addAttribute("cards", playerWaist);
-
-        return /*"player_out"*/ResponseEntity.ok(gameFacade.getPlayerCards(playerId));
+        return ResponseEntity.ok(gameFacade.getPlayerCards(playerId));
     }
-    //endregion
+
 }

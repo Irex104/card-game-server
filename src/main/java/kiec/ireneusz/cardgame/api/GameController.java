@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/games", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(tags = "Game")
@@ -27,10 +29,9 @@ public class GameController {
 
     @PostMapping("/createGame")
     public ResponseEntity<GameDTO> createGame(
-            @RequestBody GameApi api/*,
-            @RequestBody PlayersListApi playersListApi*/
+            @RequestBody GameApi api
     ) throws PlayerNotFoundException {
-        return ResponseEntity.ok(gameFacade.createGame(api/*, playersListApi*/));
+        return ResponseEntity.ok(gameFacade.createGame(api));
     }
 
     @GetMapping("/deal/{gameId}")
@@ -39,6 +40,11 @@ public class GameController {
     ) throws GameNotFoundException {
         gameFacade.deal(gameId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<GameDTO>> getAll(){
+        return ResponseEntity.ok(gameFacade.getGames());
     }
 
 }

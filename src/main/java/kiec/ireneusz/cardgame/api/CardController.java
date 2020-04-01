@@ -40,14 +40,10 @@ public class CardController {
     }
 
     @GetMapping("/getOne/{cardId}")
-    public ResponseEntity<CardDTO>/*String*/ getOne(
-            @PathVariable Long cardId/*,
-            Model model*/
+    public ResponseEntity<CardDTO> getOne(
+            @PathVariable Long cardId
     ) throws CardNotFoundException {
-        /*CardDTO cardDTO = gameFacade.getCard(cardId);
-        model.addAttribute("cardName", cardDTO.getFigureName() + " " + cardDTO.getColorName());
-        model.addAttribute("cardImage", cardDTO.getVisibleImagePath());*/
-        return /*"CardOutput"*/ResponseEntity.ok(gameFacade.getCard(cardId));
+        return ResponseEntity.ok(gameFacade.getCard(cardId));
     }
 
     @GetMapping("/getAll")

@@ -18,7 +18,10 @@ public class CardDTO {
     private Long figureStrength;
     private ColorName colorName;
     private FigureName figureName;
+    private String imagePath;
+    private String reverseImagePath;
     private String visibleImagePath;
+    private boolean discovered;
 
     public CardDTO(Card card) {
         this.id = card.getId();
@@ -26,6 +29,9 @@ public class CardDTO {
         this.figureStrength = card.getFigureStrength();
         this.colorName = card.getColorName();
         this.figureName = card.getFigureName();
+        this.imagePath = card.getImagePath();
+        this.reverseImagePath = card.getReverseImagePath();
         this.visibleImagePath = card.getVisibleImagePath();
+        this.discovered = card.isDiscovered();
     }
 }

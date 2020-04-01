@@ -31,5 +31,7 @@ public class GameService {
                 .orElseThrow(() -> new GameNotFoundException(gameId));
     }
 
-
+    public List<Game> getAll() {
+        return repository.getAllByDeletedAtIsNull();
+    }
 }

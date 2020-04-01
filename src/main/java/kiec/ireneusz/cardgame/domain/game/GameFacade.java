@@ -47,9 +47,15 @@ public class GameFacade {
         List<Card> mainWaist = cardService.getShuffled52Waist();
         card2playerService.deal(game, mainWaist);
     }
-    //endregion
 
+    public List<GameDTO> getGames() {
+        return gameService.getAll().stream()
+                .map(Mapper::toGameDTOSimple).collect(Collectors.toList());
+    }
+
+    //endregion
     //region PLAYER
+
     public PlayerDTO createPlayer(PlayerApi api) {
         List<Card> playerDeck = new ArrayList<>();
         return playerService.createPlayer(api, playerDeck);
@@ -71,8 +77,8 @@ public class GameFacade {
     }
 
     //endregion
-
     //region CARD
+
     public List<CardDTO> createWaist() {
         return cardService.createWaist().stream()
                 .map(Mapper::toCardDTOSimple).collect(Collectors.toList());
